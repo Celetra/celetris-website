@@ -7,16 +7,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="navbar">
+        <div id="navbar" className="navbar">
           <div className="navitem">Item1</div>
           <div className="navitem">Item2</div>
           <div className="navitem">Item3</div>
         </div>
         <div className="slogan">
-          simply stellar software.
+          simply stellar software
         </div>
       </header>
-      <SpaceTrip/>
+      <SpaceTrip />
     </div>
   );
 }

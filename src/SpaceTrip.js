@@ -20,8 +20,9 @@ export class SpaceTrip extends React.Component {
 
     Sketch = (p) => {
         const N_STARS = 300;
+        const NAVBAR_HEIGHT = .085; // 8.5 vh
 
-        let wh = p.windowHeight;
+        let wh = p.windowHeight * (1 - NAVBAR_HEIGHT);
         let ww = p.windowWidth;
         let stars = [];
         let img;
@@ -38,7 +39,7 @@ export class SpaceTrip extends React.Component {
         }
 
         p.setup = () => {
-            p.createCanvas(p.windowWidth, p.windowHeight);
+            p.createCanvas(ww, wh);
             p.background(p.color(0));
             p.frameRate(30);
             for (let i=0; i<N_STARS; i++) {
@@ -77,7 +78,7 @@ export class SpaceTrip extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}>
+            <div ref={this.myRef} className="animation">
 
             </div>
         )

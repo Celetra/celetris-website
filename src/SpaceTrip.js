@@ -15,11 +15,13 @@ export class SpaceTrip extends React.Component {
             this.x = x;
             this.y = y;
             this.size = size;
+            this.color = '#ffffff';
         }
     }
 
     Sketch = (p) => {
-        const N_STARS = 300;
+        const N_STARS = 350;
+        const STAR_SIZE = 6;
         const NAVBAR_HEIGHT = .085; // 8.5 vh
 
         let wh = p.windowHeight * (1 - NAVBAR_HEIGHT);
@@ -30,8 +32,9 @@ export class SpaceTrip extends React.Component {
         let createStar = () => {
             let sx = Math.random() * ww;
             let sy = Math.random() * wh;
-            let size = Math.random() * 5;
-            return new this.Star(sx, sy, size);
+            let size = Math.random() * STAR_SIZE;
+            let star = new this.Star(sx, sy, size);
+            return star;
         }
 
         p.preload = () => {
@@ -48,11 +51,27 @@ export class SpaceTrip extends React.Component {
         }
 
         p.draw = () => {
-            // Draw the stars
             p.background(p.color(0));
-            p.stroke(255);
+            p.noStroke();
+
+            // Occasionally create a random star at the mouse location
+            if (Math.random() > 0.98) {
+                let rSize = Math.max(2, Math.random() * STAR_SIZE);
+                let mStar = new this.Star(p.mouseX, p.mouseY, rSize);
+                mStar.isMouse = true;
+                let randVal = () => { return Math.floor(255*Math.random()); } 
+                mStar.color = 'rgb(' + randVal() + ',' + randVal() + ',' + randVal() + ')';
+                console.log(mStar.color);
+                stars.push(mStar);
+            }
+
+            // Draw the stars
             stars.forEach((s, ix) => {
                 s.y -= 1;
+                if (Math.abs(p.mouseY - s.y) < s.size && Math.abs(p.mouseX - s.x) < s.size && !s.isMouse) {
+                    s.color = '#fbff19'; // Yellow
+                }
+                p.fill(p.color(s.color));
                 p.ellipse(s.x, s.y, s.size, s.size);
             });
 

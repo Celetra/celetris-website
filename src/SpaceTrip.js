@@ -22,6 +22,7 @@ export class SpaceTrip extends React.Component {
     Sketch = (p) => {
         const N_STARS = 350;
         const STAR_SIZE = 6;
+        const STAR_SPEED = 1.2;
         const NAVBAR_HEIGHT = .085; // 8.5 vh
 
         let wh = p.windowHeight * (1 - NAVBAR_HEIGHT);
@@ -67,7 +68,10 @@ export class SpaceTrip extends React.Component {
 
             // Draw the stars
             stars.forEach((s, ix) => {
-                s.y -= 1;
+                let mouseDy = 0.5 + (wh/2 - p.mouseY) / wh;
+                let mouseDx = 0.5 + (ww/2 - p.mouseX) / ww;
+                s.y -= STAR_SPEED * s.size / STAR_SIZE * mouseDy;
+                s.x -= STAR_SPEED * s.size / STAR_SIZE * mouseDx;
                 if (Math.abs(p.mouseY - s.y) < s.size && Math.abs(p.mouseX - s.x) < s.size && !s.isMouse) {
                     s.color = '#fbff19'; // Yellow
                 }

@@ -4,7 +4,7 @@ import p5 from 'p5';
 import React, { Component } from "react";
 import logo_dark from './logo_dark.png';
 
-export class SpaceTrip extends React.Component {
+export class StarField extends React.Component {
     constructor(props) {
         super(props)
         this.myRef = React.createRef()
@@ -20,20 +20,24 @@ export class SpaceTrip extends React.Component {
     }
 
     Sketch = (p) => {
-        const N_STARS = 350;
         const STAR_SIZE = 6;
-        const STAR_SPEED = 1.2;
+        const STAR_SPEED = 2.5;
         const NAVBAR_HEIGHT = .085; // 8.5 vh
+        // Sets bounds for how far on screen the mouse should be for extra stars
+        const M_TOL = 10;
+        // Extended off screen width & height. Stars won't be removed until they are beyond the extended area.
+        const EXT = 100; 
 
         let wh = p.windowHeight * (1 - NAVBAR_HEIGHT);
         let ww = p.windowWidth;
+        const N_STARS = 300 * ww/1080;
         let stars = [];
         let img;
 
         let createStar = () => {
             let sx = Math.random() * ww;
             let sy = Math.random() * wh;
-            let size = Math.random() * STAR_SIZE;
+            let size = Math.max(Math.random(), 0.02) * STAR_SIZE;
             let star = new this.Star(sx, sy, size);
             return star;
         }
@@ -55,8 +59,12 @@ export class SpaceTrip extends React.Component {
             p.background(p.color(0));
             p.noStroke();
 
+            let mouseDy = 2 * (wh/2 - p.mouseY) / wh;
+            let mouseDx = 2 * (ww/2 - p.mouseX) / ww;
+
             // Occasionally create a random star at the mouse location
-            if (Math.random() > 0.98) {
+            // Mouse must be on screen
+            if (Math.random() > 0.98 && M_TOL < p.mouseY && p.mouseY < wh - M_TOL && M_TOL < p.mouseX && p.mouseX < ww - M_TOL) {
                 let rSize = Math.max(2, Math.random() * STAR_SIZE);
                 let mStar = new this.Star(p.mouseX, p.mouseY, rSize);
                 mStar.isMouse = true;
@@ -68,10 +76,8 @@ export class SpaceTrip extends React.Component {
 
             // Draw the stars
             stars.forEach((s, ix) => {
-                let mouseDy = 0.5 + (wh/2 - p.mouseY) / wh;
-                let mouseDx = 0.5 + (ww/2 - p.mouseX) / ww;
-                s.y -= STAR_SPEED * s.size / STAR_SIZE * mouseDy;
-                s.x -= STAR_SPEED * s.size / STAR_SIZE * mouseDx;
+                s.y += STAR_SPEED * s.size / STAR_SIZE * mouseDy;
+                s.x += STAR_SPEED * s.size / STAR_SIZE * mouseDx;
                 if (Math.abs(p.mouseY - s.y) < s.size && Math.abs(p.mouseX - s.x) < s.size && !s.isMouse) {
                     s.color = '#fbff19'; // Yellow
                 }
@@ -84,14 +90,52 @@ export class SpaceTrip extends React.Component {
             p.image(img, (ww-LOGO_SIZE)/2, (wh-LOGO_SIZE)/2, LOGO_SIZE, LOGO_SIZE);
 
             // Make new stars if any went offscreen
-            let onScreen = stars.filter((s, ix) => s.y > 0);
-            for (let i=0; i<N_STARS-onScreen.length; i++) {
-                let size = Math.random() * 5;
+            let starsOnScreen = stars.filter((s, ix) => -EXT < s.y && s.y < wh + EXT && -EXT < s.x && s.x < ww + EXT);
+            for (let i=0; i<N_STARS-starsOnScreen.length; i++) {
+                let size = Math.max(Math.random(), 0.02) * STAR_SIZE;
+                let sx, sy;
+                let startFromX = Math.random() > 0.5;
+                if (mouseDx > 0 && mouseDy > 0) {
+                    if (startFromX) {
+                        sx = -size;
+                        sy = Math.random() * wh - size;
+                    } else {
+                        sx = Math.random() * ww - size;
+                        sy = -size;
+                    }
+                } else if (mouseDx > 0 && mouseDy < 0) {
+                    if (startFromX) {
+                        sx = -size;
+                        sy = Math.random() * wh + size;
+                    } else {
+                        sx = Math.random() * ww - size;
+                        sy = wh + size;
+                    }
+                } else if (mouseDx < 0 && mouseDy > 0) {
+                    if (startFromX) {
+                        sx = ww + size;
+                        sy = Math.random() * wh - size;
+                    } else {
+                        sx = Math.random() * ww + size;
+                        sy = -size;
+                    }
+                } else { // mouseDx < 0 && mouseDy < 0
+                    if (startFromX) {
+                        sx = ww + size;
+                        sy = Math.random() * wh - size;
+                    } else {
+                        sx = Math.random() * ww + size;
+                        sy = wh + size;
+                    }
+                }
+
+                /*
                 let sx = Math.random() * ww;
                 let sy = wh+size;
-                onScreen.push(new this.Star(sx, sy, size));
+                */
+                starsOnScreen.push(new this.Star(sx, sy, size));
             }
-            stars = onScreen;
+            stars = starsOnScreen;
         }
     }
 

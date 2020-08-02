@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {SpaceTrip} from './SpaceTrip.js';
+import {StarField} from './StarField.js';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           simply stellar software
         </div>
       </header>
-      <SpaceTrip />
+      <StarField />
     </div>
   );
 }
@@ -24,7 +24,7 @@ function App() {
 function App_OLD() {
   return (
     <div className="App">
-      <SpaceTrip/>
+      <StarField/>
     </div>
   );
 }

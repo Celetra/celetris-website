@@ -28,9 +28,9 @@ export class StarField extends React.Component {
         // Extended off screen width & height. Stars won't be removed until they are beyond the extended area.
         const EXT = 100; 
 
-        let wh = p.windowHeight * (1 - NAVBAR_HEIGHT);
+        let wh = this.props.showNavBar ? p.windowHeight * (1 - NAVBAR_HEIGHT) : p.windowHeight;
         let ww = p.windowWidth;
-        const N_STARS = 300 * ww/1080;
+        const N_STARS = 300 * Math.max(ww, wh)/1080;
         let stars = [];
         let img;
 
@@ -129,10 +129,6 @@ export class StarField extends React.Component {
                     }
                 }
 
-                /*
-                let sx = Math.random() * ww;
-                let sy = wh+size;
-                */
                 starsOnScreen.push(new this.Star(sx, sy, size));
             }
             stars = starsOnScreen;

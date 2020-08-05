@@ -2,29 +2,18 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {StarField} from './StarField.js';
+import {NavBar} from './NavBar.js';
 
 function App() {
-  return (
+  const showNavBar = false;
+  return showNavBar ? (
     <div className="App">
-      <header className="App-header">
-        <div id="navbar" className="navbar">
-          <div className="navitem">Item1</div>
-          <div className="navitem">Item2</div>
-          <div className="navitem">Item3</div>
-        </div>
-        <div className="slogan">
-          simply stellar software
-        </div>
-      </header>
-      <StarField />
+      <NavBar />
+      <StarField showNavBar={showNavBar}/>
     </div>
-  );
-}
-
-function App_OLD() {
-  return (
+  ) : (
     <div className="App">
-      <StarField/>
+      <StarField showNavBar={showNavBar}/>
     </div>
   );
 }

@@ -1,20 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {StarField} from './StarField.js';
-import {NavBar} from './NavBar.js';
+import { StarField } from './StarField';
+import Nav from './Nav';
+import About from './About'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const showNavBar = false;
-  return showNavBar ? (
-    <div className="App">
-      <NavBar />
-      <StarField showNavBar={showNavBar}/>
-    </div>
-  ) : (
-    <div className="App">
-      <StarField showNavBar={showNavBar}/>
-    </div>
+  return (
+    <Router>
+      <div className="App">
+        <Nav />
+        <Route path="/" exact component={StarField}/>
+        <Route path="/about" component={About}/>
+      </div>
+    </Router>
   );
 }
 

@@ -22,17 +22,6 @@
   grid-column: auto;
 }
 
-.App-header {
-  background-color: white;
-  min-height: 8.5vh;
-  display: grid;
-  grid-template-columns: [navbar] 80% [slogan] 20%;
-  grid-template-rows: auto;
-  grid-row: 1 / 2;
-  font-size: calc(10px + 1.5vmin);
-  color: black;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -47,28 +36,27 @@
 }
 
 .navbar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  grid-column: 1 / 2;
-  margin-left: 30px;
-  background-color: rgb(19, 34, 46);
-  color: white;
+  margin: 0;
+  padding: 0;
+  border-bottom: solid thin;
+  border-color: #61dafb;
+  background-color: black;
+  padding-left: 40px;
+  overflow: hidden;
 }
 
 .navitem {
   display: block;
-  margin-left: 20px;
-  margin-right: 40px;
+  color: white;
+  float: left;
+  list-style-type: none;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+  text-align: center;
+  font-size: calc(10px + 1.5vmin);
+  padding: 14px 25px;
 }
 
-.slogan {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  grid-column: 2 / 3;
-  justify-self: end;
-  margin-left: 10px;
-  margin-right: 10px;
+.navitem:hover {
+  background-color: rgb(63, 63, 63);
 }

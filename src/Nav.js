@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Nav(props) {
     return (
         <header className="App-header">
-            <div id="navbar" className="navbar">
+            <ul id="navbar" className="navbar">
                 <Link to="/">
-                    <div className="navitem">Home</div>
+                    <li className="navitem">Home</li>
                 </Link>
                 <Link to="/about">
-                    <div className="navitem">About</div>
+                    <li className="navitem">About</li>
                 </Link>
-            </div>
-            <div className="slogan">
-                Celetris
-            </div>
+                <Link to="/contact">
+                    <li className="navitem">Contact</li>
+                </Link>
+                <Link to="/">
+                    <li style={{float:"right"}} className="navitem">Celetris</li>
+                </Link>
+            </ul>
         </header>
     );
 }

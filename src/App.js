@@ -6,7 +6,6 @@ import About from './About'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-  const showNavBar = false;
   return (
     <Router>
       <div className="App">

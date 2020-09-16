@@ -3,20 +3,23 @@ import React from 'react';
 
 function About(props) {
   return (
-    <div className="about">
-        <h1>About Celetris LLC</h1>
+    <div className="textblock">
+        <h1>$> About Celetris LLC _</h1>
         <p>
-            Celetris LLC is a software development company based in Washington state, USA. Celetris specializes in developing cloud apps and developer tools.
-            View our open source projects on Celetra's GitHub profile: https://github.com/Celetra. 
+            Celetris LLC is a software development company based in Washington state, USA.
+            We specialize in developing websites, cloud software, and developer tools.
+            View our open source projects on GitHub.<br/>
+            <a href="https://github.com/Celetra" target="_blank">https://github.com/Celetra</a> 
         </p>
         <h1>Road Map</h1>
         <p>
-            The following projects are in the works:
+            Here's what we're working on.
         </p>
         <h2>CeletraLabs</h2>
         <p>
-            CeletraLabs is an upcoming blog to feature projects by Celetris LLC founder Celetra. CeletraLabs aims to share information
-            freely to inspire developers, makers, and lifelong learners.
+            CeletraLabs is a blog featuring projects by Celetris founder Nick King, a.k.a. Celetra.
+            CeletraLabs embraces the hacker spirit of sharing information
+            freely with developers, makers, and lifelong learners.
         </p>
     </div>
   );

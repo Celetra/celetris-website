@@ -2,7 +2,7 @@
 // Thank you Christian Kastner!
 import p5 from 'p5';
 import React, { Component } from "react";
-import logo_dark from './logo_dark.png';
+import logo_dark from '../logo_dark.png';
 
 export class StarField extends React.Component {
     constructor(props) {

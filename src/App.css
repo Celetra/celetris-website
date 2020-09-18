@@ -6,23 +6,8 @@ html, body {
   display: block;
 }
 
-.App {
-}
-
-.animation {
-}
-
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .navbar {
@@ -31,7 +16,7 @@ html, body {
   border-bottom: solid thin;
   border-color: #61dafb;
   background-color: black;
-  padding-left: 40px;
+  padding-left: 1.5vw;
   overflow: hidden;
 }
 
@@ -54,8 +39,8 @@ html, body {
 
 .textblock {
   display: block;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 25vw;
+  margin-right: 25vw;
   font-family: 'Courier New', Courier, monospace;
   font-size: calc(10px + 1.2vmin);
 }

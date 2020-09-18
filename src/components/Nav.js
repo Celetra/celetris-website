@@ -15,7 +15,7 @@ function Nav(props) {
                     <li className="navitem">Contact</li>
                 </Link>
                 <Link to="/">
-                    <li style={{float:"right", marginRight:"40px"}} className="navitem">Celetris</li>
+                    <li style={{float:"right", marginRight:"1.5vw"}} className="navitem">Celetris</li>
                 </Link>
             </ul>
         </header>

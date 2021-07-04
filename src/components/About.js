@@ -12,16 +12,6 @@ function About(props) {
         <p>
           <a href="https://github.com/Celetra" target="_blank">https://github.com/Celetra</a> 
         </p>
-        <h2>Road Map</h2>
-        <p>
-            Here's what we're working on.
-        </p>
-        <h3>CeletraLabs</h3>
-        <p>
-            CeletraLabs is a blog featuring projects by Celetris founder Nick King, a.k.a. Celetra.
-            CeletraLabs embraces the hacker spirit of sharing information
-            freely with developers, makers, and lifelong learners.
-        </p>
     </div>
   );
 }
